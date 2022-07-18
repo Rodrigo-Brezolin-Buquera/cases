@@ -1,6 +1,6 @@
 import { CompetitionResults } from "../model/CompetitionsResults";
 
-export const findBestResults = (resultsList: CompetitionResults[]): any => {
+export const findBestResults = (resultsList: CompetitionResults[]): CompetitionResults[] => {
   const athletesNames: string[] = [];
   resultsList.forEach((item) => {
     athletesNames.push(item.athlete);

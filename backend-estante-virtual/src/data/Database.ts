@@ -1,10 +1,11 @@
+import { CompetitionRepository } from "../business/Repository";
 import { CustomError } from "../error/CustomError";
 import { Competition } from "../model/Competitions";
 import { CompetitionResults } from "../model/CompetitionsResults";
 import { CompetitionStatusInputDTO } from "../model/DTO";
 import { BaseDatabase } from "./BaseDatabase";
 
-export class CompetitionDatabase extends BaseDatabase {
+export class CompetitionDatabase extends BaseDatabase implements CompetitionRepository {
   private competitionsTable = "Competitions";
 
   private resultsTable = "Competitions_results";

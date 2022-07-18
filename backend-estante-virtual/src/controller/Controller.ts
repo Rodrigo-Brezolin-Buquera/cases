@@ -2,8 +2,11 @@ import { Request, Response } from "express";
 import { CompetitionBusiness } from "../business/Business";
 import { CompetitionInputDTO, CompetitionResultsInputDTO, CompetitionStatusInputDTO } from "../model/DTO";
 
-const competitionBusiness = new CompetitionBusiness()
+
 export class CompetitionController {
+  constructor(private competitionBusiness: CompetitionBusiness){
+
+  }
   
   async findCompetition(req: Request, res: Response) {
     try {
@@ -11,7 +14,7 @@ export class CompetitionController {
         name: req.query.name as string
       }
 
-     const result = await competitionBusiness.findCompetition(input)
+     const result = await this.competitionBusiness.findCompetition(input)
 
       res.status(200).send({ result });
     } catch (error: any) {
@@ -25,7 +28,7 @@ export class CompetitionController {
         name: req.body.name
       }
       
-      await competitionBusiness.createCompetition(input)
+      await this.competitionBusiness.createCompetition(input)
 
       res.status(200).send({ message: "Competition created" });
     } catch (error: any) {
@@ -42,7 +45,7 @@ export class CompetitionController {
         metric: req.body.metric
       }
 
-      await competitionBusiness.addResult(input)
+      await this.competitionBusiness.addResult(input)
 
       res.status(200).send({ message: "Results added to the competition"  });
     } catch (error: any) {
@@ -57,7 +60,7 @@ export class CompetitionController {
         status: req.body.status
       }
       
-      await competitionBusiness.changeStatus(input)
+      await this.competitionBusiness.changeStatus(input)
 
       res.status(200).send({ message: "Competition status changed"  });
     } catch (error: any) {

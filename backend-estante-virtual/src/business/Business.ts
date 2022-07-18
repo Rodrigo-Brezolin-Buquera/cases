@@ -1,4 +1,3 @@
-import { CompetitionDatabase } from "../data/Database";
 import { CompetitionEnded } from "../error/CompetitionEnded";
 import { CompetitionNotFound } from "../error/CompetitionNotFound";
 import { CustomError } from "../error/CustomError";
@@ -11,29 +10,32 @@ import {
   CompetitionResultsInputDTO,
   CompetitionStatusInputDTO,
 } from "../model/DTO";
-import { generateId } from "../services/idGenerator";
-import { findBestResults } from "../utils/findBestResults";
+import { CompetitionRepository } from "./Repository";
 
-const competitionDatabase = new CompetitionDatabase();
 export class CompetitionBusiness {
+  constructor(
+    private competitionDatabase: CompetitionRepository,
+    private generateId: ()=> string,
+    private findBestResults :(results: CompetitionResults[]) => CompetitionResults[]
+    ){
+  }
+
   async findCompetition({ name }: CompetitionInputDTO): Promise<Competition[]> {
     try {
       const competitionList = name
-        ? await competitionDatabase.findCompetition(name)
-        : await competitionDatabase.findAllCompetition();
+        ? await this.competitionDatabase.findCompetition(name)
+        : await this.competitionDatabase.findAllCompetition();
 
       if (competitionList.length < 1) {
         throw new CompetitionNotFound();
       }
 
       let result: Competition[] = [];
-
       for(let comp of competitionList ){
-        const competionResults = await competitionDatabase.findCompetitionResults(comp.name);
-        result.push({ ...comp, results: findBestResults(competionResults) });
+        const competionResults = await this.competitionDatabase.findCompetitionResults(comp.name);
+        result.push({ ...comp, results: this.findBestResults(competionResults) });
       }
 
-  
       return result;
     } catch (error: any) {
       throw new CustomError(
@@ -50,12 +52,12 @@ export class CompetitionBusiness {
       }
 
       const newCompetition: Competition = {
-        id: generateId(),
+        id: this.generateId(),
         name,
         status: STATUS.ongoing,
       };
 
-      await competitionDatabase.createCompetition(newCompetition);
+      await this.competitionDatabase.createCompetition(newCompetition);
     } catch (error: any) {
       throw new CustomError(
         error.message || "Error inesperado",
@@ -67,7 +69,7 @@ export class CompetitionBusiness {
   async addResult(input: CompetitionResultsInputDTO): Promise<void> {
     try {
       const { competition, athlete, value, metric } = input;
-      const competitionList = await competitionDatabase.findCompetition(
+      const competitionList = await this.competitionDatabase.findCompetition(
         competition
       );
 
@@ -81,7 +83,7 @@ export class CompetitionBusiness {
         throw new CompetitionEnded();
       }
 
-      const id = generateId();
+      const id = this.generateId();
       const competitionResults: CompetitionResults = {
         id,
         competition,
@@ -90,7 +92,7 @@ export class CompetitionBusiness {
         metric,
       };
 
-      await competitionDatabase.addResult(competitionResults);
+      await this.competitionDatabase.addResult(competitionResults);
     } catch (error: any) {
       throw new CustomError(
         error.message || "Error inesperado",
@@ -104,7 +106,7 @@ export class CompetitionBusiness {
     status,
   }: CompetitionStatusInputDTO): Promise<void> {
     try {
-      const competition = await competitionDatabase.findCompetition(name);
+      const competition = await this.competitionDatabase.findCompetition(name);
 
       if (competition.length < 1) {
         throw new CompetitionNotFound();
@@ -114,7 +116,7 @@ export class CompetitionBusiness {
         throw new InvalidStatus();
       }
 
-      await competitionDatabase.changeStatus({ name, status });
+      await this.competitionDatabase.changeStatus({ name, status });
     } catch (error: any) {
       throw new CustomError(
         error.message || "Error inesperado",
