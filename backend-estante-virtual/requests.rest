@@ -1,0 +1,38 @@
+### Create Competition 
+POST http://localhost:3003/competition
+Content-Type: application/json
+
+{
+  "name": "teste"  
+}
+
+### get Competition 
+GET http://localhost:3003/competition?name=teste
+
+### change Competition status
+PUT http://localhost:3003/competition/status
+Content-Type: application/json
+
+{
+"name": "teste",
+"status": "ongoing"
+}
+
+### Create Competition 
+POST http://localhost:3003/competition
+Content-Type: application/json
+
+{
+  "name": "teste"  
+}
+
+### add results to Competition 
+POST http://localhost:3003/competition/result
+Content-Type: application/json
+
+{
+ "competition": "teste",
+    "athlete": "maria",
+    "value": "2",
+    "metric": "s"
+}
