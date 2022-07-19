@@ -1,3 +1,4 @@
+import { BadRequest } from "../error/BadRequest";
 import { CompetitionEnded } from "../error/CompetitionEnded";
 import { CompetitionNotFound } from "../error/CompetitionNotFound";
 import { CustomError } from "../error/CustomError";
@@ -69,6 +70,11 @@ export class CompetitionBusiness {
   async addResult(input: CompetitionResultsInputDTO): Promise<void> {
     try {
       const { competition, athlete, value, metric } = input;
+
+      if (!competition || !athlete || !value || !metric ) {
+        throw new BadRequest()
+      }
+
       const competitionList = await this.competitionDatabase.findCompetition(
         competition
       );
