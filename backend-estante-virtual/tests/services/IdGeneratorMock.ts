@@ -1,4 +1,2 @@
 
-export const generateIdMock = (): string => {
-    return "idmock"
-}
+export const generateIdMock = jest.fn(()=>"idmock" )  

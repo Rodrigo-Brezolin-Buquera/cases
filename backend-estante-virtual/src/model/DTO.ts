@@ -10,6 +10,6 @@ export interface CompetitionStatusInputDTO {
 export interface CompetitionResultsInputDTO {
     competition: string,
     athlete: string,
-    value: string,
+    value: number,
     metric: string
 }

@@ -22,14 +22,14 @@ export class CompetitionDatabaseMock implements CompetitionRepository {
       athlete: "testão da silva",
       value: 12,
       metric: "s"
-    } ]
-    return [];
+    }]
+    return results;
   }
   async findAllCompetition(): Promise<Competition[]> {
     const competion: Competition = {
       id: "id",
      name: "name",
-     status: STATUS.ongoing, 
+     status: STATUS.finished, 
    }
    return [competion]
   }
