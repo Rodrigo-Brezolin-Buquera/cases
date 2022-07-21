@@ -1,4 +1,9 @@
 
 
 ### get  
-GET http://localhost:3003/
+GET http://localhost:3003/pokemon
+
+ 
+
+### populate  
+POST http://localhost:3003/pokemon/populate

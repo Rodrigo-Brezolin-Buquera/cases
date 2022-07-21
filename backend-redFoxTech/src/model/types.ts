@@ -1,0 +1,67 @@
+export type PokemonData = {
+  name: string;
+  pokedexNumber: number;
+  imgName: number;
+  generation: number;
+  evolutionStage: number;
+  evolved: number;
+  familyID: number;
+  crossGen: number;
+  type1: string;
+  type2: string;
+  weather1: string;
+  weather2: string;
+  statTotal: number;
+  atk: number;
+  def: number;
+  sta: number;
+  legendary: number;
+  aquireable: number;
+  spawns: number;
+  regional: number;
+  raidable: number;
+  hatchable: number;
+  shiny: number;
+  nest: number;
+  new: number;
+  notGettable: number;
+  futureEvolve: number;
+  CP40: number;
+  CP39: number;
+};
+
+export type Pokemon = {
+  name: string;
+  pokedexNumber: number;
+  imgName: number;
+  generation: number;
+  evolutionStage: number;
+  evolved: number;
+  familyID: number;
+  status: {
+    type1: string;
+    type2: string;
+    weather1: string;
+    weather2: string;
+    statTotal: number;
+    atk: number;
+    def: number;
+    sta: number;
+    CP40: number;
+    CP39: number;
+  };
+  variables: {
+    crossGen: boolean;
+    legendary: boolean;
+    aquireable: boolean;
+    spawns: boolean;
+    regional: boolean;
+    raidable: boolean;
+    hatchable: number;
+    shiny: boolean;
+    nest: boolean;
+    new: boolean;
+    notGettable: boolean;
+    futureEvolve: boolean;
+  };
+};
