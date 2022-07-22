@@ -6,9 +6,16 @@ import { Pokemon, PokemonData } from "../model/types";
 export class Database extends BaseDatabase {
   private pokemonTable = "Pokemon_go";
 
-  async findAllPokemon() {
+  async findAllPokemon(filter:any) {
     try {
-      const pokemonList = await Database.connection(this.pokemonTable).select();
+      const pokemonList = await Database.connection(this.pokemonTable).select()
+
+
+      // where("title", "like", `%${title}%`)
+      // .orderBy(sort, order)
+      // .limit(size)
+      // .offset(offset)
+
       const result = pokemonList.map((poke)=> this.toModelPokemon(poke))
 
       return result
