@@ -1,24 +1,36 @@
 import { CustomError } from "../error/CustomError";
 import { BaseDatabase } from "./BaseDatabase";
-import { fetchData } from "./fetchData";
-import { Pokemon, PokemonData } from "../model/types";
+import { fetchXLSXData } from "./fetchData";
+import { Pokemon } from "../model/types";
+import { FiltersInputDTO } from "../model/DTO";
 
 export class Database extends BaseDatabase {
   private pokemonTable = "Pokemon_go";
 
-  async findAllPokemon(filter:any) {
+  async findAllPokemon(filters: FiltersInputDTO):Promise<Pokemon[]> {
     try {
-      const pokemonList = await Database.connection(this.pokemonTable).select()
+      const { name, sort, order, variables, type, generation, size, offset } =
+        filters;
 
+      const pokemonList = await Database.connection(this.pokemonTable)
+      .select()
+      .where("name", "like", `%${name}%`)
+      .andWhere("generation", "like", `%${generation}%`)
+      .andWhere((queryBuilder)  => {
+        queryBuilder.where("type1 ", "like", `%${type}%` ).orWhere("type2 ", "like", `%${type}%`)
+      })
+      .modify((queryBuilder) => {
+        if (variables) {
+            queryBuilder.andWhere(`${variables}`, "=", 1)
+        }}
+        )
+      .orderBy(sort, order)
+      .limit(size)
+      .offset(offset)
+     
+      const result = pokemonList.map((poke:any) => this.toModelPokemon(poke));
 
-      // where("title", "like", `%${title}%`)
-      // .orderBy(sort, order)
-      // .limit(size)
-      // .offset(offset)
-
-      const result = pokemonList.map((poke)=> this.toModelPokemon(poke))
-
-      return result
+      return result;
     } catch (error: any) {
       throw new CustomError(
         error.message || "Error inesperado",
@@ -29,7 +41,7 @@ export class Database extends BaseDatabase {
 
   async populate(): Promise<void> {
     try {
-      const pokemonList = await fetchData();
+      const pokemonList = await fetchXLSXData();
       const promises = pokemonList.map(async (poke) => {
         await Database.connection(this.pokemonTable).insert({
           name: poke.name,
@@ -73,7 +85,7 @@ export class Database extends BaseDatabase {
     }
   }
 
- private toModelPokemon(obj: any): Pokemon {
+  private toModelPokemon(obj: any): Pokemon {
     return {
       name: obj.name,
       pokedexNumber: obj.pokedex_number,
@@ -82,6 +94,7 @@ export class Database extends BaseDatabase {
       evolutionStage: obj.evolution_stage,
       evolved: obj.evolved,
       familyID: obj.family_ID,
+      hatchable: obj.hatchable,
       status: {
         type1: obj.type1,
         type2: obj.type2,
@@ -101,7 +114,6 @@ export class Database extends BaseDatabase {
         spawns: obj.spawns ? true : false,
         regional: obj.regional ? true : false,
         raidable: obj.raidable ? true : false,
-        hatchable: obj.hatchable,
         shiny: obj.shiny ? true : false,
         nest: obj.nest ? true : false,
         new: obj.new ? true : false,

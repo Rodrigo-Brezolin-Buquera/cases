@@ -4,7 +4,7 @@ import readXlsxFile from "read-excel-file/node";
 
 const filePath = path.resolve(__dirname, "PokemonGo.xlsx");
 
-export const fetchData = async (): Promise<PokemonData[]> => {
+export const fetchXLSXData = async (): Promise<PokemonData[]> => {
   const pokemonList = await readXlsxFile(filePath).then((rows: any[]) =>
     rows.map((row: any[]): PokemonData => {
       return {

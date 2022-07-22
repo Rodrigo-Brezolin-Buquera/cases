@@ -1,9 +1,28 @@
 
-
-### get  
+### get without Querys
 GET http://localhost:3003/pokemon
 
+### get with name query
+GET http://localhost:3003/pokemon?name=Bee
+
+### get with sort and order query
+GET http://localhost:3003/pokemon?sort=power&order=desc
+
+### get with generation query
+GET http://localhost:3003/pokemon?generation=1
  
+### get with variable query
+GET http://localhost:3003/pokemon?variables=nest
+ 
+### get with type query
+GET http://localhost:3003/pokemon?type=flying
+ 
+### get with multiple querys
+GET http://localhost:3003/pokemon?type=flying&sort=name&order=desc&variables=aquireable&name=c
+ 
+
+
+
 
 ### populate  
 POST http://localhost:3003/pokemon/populate

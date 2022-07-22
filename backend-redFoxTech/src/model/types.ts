@@ -38,6 +38,7 @@ export type Pokemon = {
   evolutionStage: number;
   evolved: number;
   familyID: number;
+  hatchable: number;
   status: {
     type1: string;
     type2: string;
@@ -57,7 +58,6 @@ export type Pokemon = {
     spawns: boolean;
     regional: boolean;
     raidable: boolean;
-    hatchable: number;
     shiny: boolean;
     nest: boolean;
     new: boolean;

@@ -1,4 +1,5 @@
-CREATE TABLE IF NOT EXISTS Pokemon_go (
+CREATE TABLE
+    IF NOT EXISTS Pokemon_go (
         name VARCHAR(255) NOT NULL,
         pokedex_number INT NOT NULL PRIMARY KEY,
         img_name INT NOT NULL,
@@ -28,4 +29,4 @@ CREATE TABLE IF NOT EXISTS Pokemon_go (
         future_evolve INT NOT NULL,
         CP40 INT NOT NULL,
         CP39 INT NOT NULL
-        );
+    );

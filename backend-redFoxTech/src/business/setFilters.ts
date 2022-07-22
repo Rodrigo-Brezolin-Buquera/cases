@@ -1,37 +1,31 @@
-export const setFilters = (input: any) => {
+import { QueryInputDTO, FiltersInputDTO } from "../model/DTO";
+
+export const setFilters = (input: QueryInputDTO):FiltersInputDTO => {
   let { name, sort, order, variables, type, generation, size, page } = input;
 
   if (!name) {
     name = "%";
   }
 
-  if (sort !== "podedexNumber" && sort !== "power") {
+  if (sort !== "podedexNumber" && sort !== "power" && sort !== "name") {
     sort = "podedexNumber";
   }
 
-  if (sort === "podedexNumber") {
-    sort = "podedex_number";
+  if(sort === "power"){
+    sort = "stat_total"
   }
 
-  if (order?.toUpperCase() !== "ASC" || order?.toUpperCase() !== "DESC") {
+  if (sort === "podedexNumber") {
+    sort = "pokedex_number";
+  }
+
+  order = order?.toUpperCase();
+  if (order !== "ASC" && order !== "DESC") {
     order = "ASC";
   }
 
-  if (
-    variables !== "crossGen" ||
-    variables !== "legendary" ||
-    variables !== "aquireable" ||
-    variables !== "spawns" ||
-    variables !== "regional" ||
-    variables !== "raidable" ||
-    variables !== "shiny" ||
-    variables !== "hatchable" ||
-    variables !== "nest" ||
-    variables !== "new" ||
-    variables !== "notGettable" ||
-    variables !== "futureEvolve"
-  ) {
-    variables = "%";
+  if (variables === "crossGen") {
+    variables = "cross_gen";
   }
 
   if (variables === "notGettable") {
@@ -42,8 +36,20 @@ export const setFilters = (input: any) => {
     variables = "future_evolve";
   }
 
-  if (variables === "crossGen") {
-    variables = "cross_gen";
+  if (
+    variables !== "cross_gen" &&
+    variables !== "legendary" &&
+    variables !== "aquireable" &&
+    variables !== "spawns" &&
+    variables !== "regional" &&
+    variables !== "raidable" &&
+    variables !== "shiny" &&
+    variables !== "nest" &&
+    variables !== "new" &&
+    variables !== "not_gettable" &&
+    variables !== "future_evolve"
+  ) {
+    variables = undefined;
   }
 
   if (!type) {
@@ -51,12 +57,12 @@ export const setFilters = (input: any) => {
   }
 
   if (
-    generation !== 1 ||
-    generation !== 2 ||
-    generation !== 3 ||
-    generation !== 4 ||
-    generation !== 5 ||
-    generation !== 6 ||
+    generation !== 1 &&
+    generation !== 2 &&
+    generation !== 3 &&
+    generation !== 4 &&
+    generation !== 5 &&
+    generation !== 6 &&
     generation !== 7
   ) {
     generation = "%";
