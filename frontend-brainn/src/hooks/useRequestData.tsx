@@ -1,11 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { BaseURL } from "../constants/BaseURL";
+import { RequestDataProps } from "../types/types";
 
-interface RequestDataProps {
-    initialData: unknown,
-    url: string
-}
 
 export const useRequestData = ({initialData, url}: RequestDataProps): any[]  => {
     const [data, setData] = useState(initialData)

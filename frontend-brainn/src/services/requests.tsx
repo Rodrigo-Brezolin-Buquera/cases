@@ -1,9 +1,13 @@
 import axios from "axios";
 import { BaseURL } from "../constants/BaseURL";
 
-export const findLotteries = () => {
+export const findContestResults = (id: string, setContestInfo: Function): Promise<void> => {
   return axios
-    .get(`${BaseURL}/loterias`)
-    .then((res) => res.data)
-    .catch((err) => console.log(err.response));
+    .get(`${BaseURL}/concursos/${id}`)
+    .then((res) => {
+        setContestInfo(res.data)
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
 };
