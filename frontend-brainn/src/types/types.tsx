@@ -6,6 +6,7 @@ export interface LotteryProps {
 }
 
 export interface BoardProps {
+  lotteryId:string,
   contestResults: string[] | undefined;
 }
 

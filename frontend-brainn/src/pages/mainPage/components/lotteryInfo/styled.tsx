@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { neutralGray } from "../../../../constants/theme";
 
 export const MainContainer = styled.div<{ lotteryId: string }>`
   display: flex;
@@ -19,4 +20,14 @@ export const LogoContainer = styled.section`
 display:flex;
 justify-content:center;
 align-items:center;
+`
+
+export const Select = styled.select`
+font-size: 1em;
+padding: 0.5em;
+margin: 0.5em;
+background: ${neutralGray};
+border: none;
+border-radius: 3px;
+color: black
 `

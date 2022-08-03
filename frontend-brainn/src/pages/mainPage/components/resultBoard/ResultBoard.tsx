@@ -6,7 +6,7 @@ import {
   TextContainer,
 } from "./styled";
 
-export const ResultBoard = ({ contestResults }: BoardProps) => {
+export const ResultBoard = ({ contestResults, lotteryId }: BoardProps) => {
   const showResults = () => {
     const list = contestResults?.map((item: string) => {
       return <Circle key={item}>{item}</Circle>;
@@ -17,7 +17,13 @@ export const ResultBoard = ({ contestResults }: BoardProps) => {
 
   return (
     <MainContainer>
-      <ResultContainer>{showResults()}</ResultContainer>
+      <ResultContainer>
+        {lotteryId === "" ? (
+          <h2>Nenhum resultado no momento</h2>
+        ) : (
+          showResults()
+        )}
+      </ResultContainer>
       <TextContainer>
         Esse sorteio é meramente ilustrativo e não possui nenhuma ligação com a
         CAIXA

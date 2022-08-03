@@ -10,7 +10,7 @@ justify-content: center;
 align-items: center;
 position: relative;
 background-color: ${neutralGray};
-border-radius: 30% 0 0 30%;
+border-radius: 20% 0 0 20%;
 `
 
 export const ResultContainer = styled.div`

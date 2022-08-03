@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useRequestData } from "../../../../hooks/useRequestData";
-import { MainContainer,Img, LogoContainer } from "./styled";
+import { MainContainer, Img, LogoContainer, Select } from "./styled";
 import { Lottery, LotteryProps } from "../../../../types/types";
 import { ajustDate } from "../../../../services/moment";
-import Logo from "../../../../assets/Logo.png"
+import Logo from "../../../../assets/Logo.png";
 
 export const LotteryInfo = ({
   lotteryId,
@@ -43,22 +43,25 @@ export const LotteryInfo = ({
 
   return (
     <MainContainer lotteryId={lotteryId}>
-      <select placeholder="Loteria" onChange={handleLoterries} required>
+      <Select placeholder="Loteria" onChange={handleLoterries} required>
         <option value={""}> Escolha uma opção </option>
         {showSelectOptions()}
-      </select>
+      </Select>
 
       <LogoContainer>
         <Img src={Logo} alt="logo caixa" />
-      <h3>{lotteryName()}</h3>
+        <h3>{lotteryId === "" ? "Loteria" : lotteryName()}</h3>
       </LogoContainer>
-      
 
       <section>
         <p>Concurso</p>
-        <p>
-          {contestId} - {ajustDate(contestDate!)}
-        </p>
+        {lotteryId === "" ? (
+          <p>Nenhum concurso selecionado</p>
+        ) : (
+          <p>
+            {contestId} - {ajustDate(contestDate!)}
+          </p>
+        )}
       </section>
     </MainContainer>
   );

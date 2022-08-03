@@ -30,14 +30,17 @@ export const MainPage = () => {
   };
 
   return (
-    <MainContainer  lotteryId={lotteryId}>
+    <MainContainer lotteryId={lotteryId}>
       <LotteryInfo
         lotteryId={lotteryId}
         setLotteryId={setLotteryId}
         contestDate={contestInfo?.data}
         contestId={contestInfo?.id}
       />
-      <ResultBoard contestResults={contestInfo?.numeros} />
+      <ResultBoard
+        lotteryId={lotteryId}
+        contestResults={contestInfo?.numeros}
+      />
     </MainContainer>
   );
 };

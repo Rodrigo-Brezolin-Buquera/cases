@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { diadesorteColor, lotofacilColor, lotomaniaColor, megasenaColor, quinaColor, timemaniaColor } from "../../constants/theme";
+import { diadesorteColor, fontTheme, lotofacilColor, lotomaniaColor, megasenaColor, quinaColor, timemaniaColor } from "../../constants/theme";
 
 export const MainContainer = styled.div<{ lotteryId: string }>`
 display: flex;
 height:100vh;
 width: 100vw;
 justify-content: space-between;
+font-family: ${fontTheme};
 background: ${(props) => {
     switch (props.lotteryId) {
       case "0":
@@ -21,7 +22,7 @@ background: ${(props) => {
       case "5":
         return diadesorteColor;
       default:
-        return "white";
+        return "gray";
     }
   }};
 `
