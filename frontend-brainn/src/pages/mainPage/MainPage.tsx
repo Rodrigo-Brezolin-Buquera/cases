@@ -30,7 +30,7 @@ export const MainPage = () => {
   };
 
   return (
-    <MainContainer>
+    <MainContainer  lotteryId={lotteryId}>
       <LotteryInfo
         lotteryId={lotteryId}
         setLotteryId={setLotteryId}
