@@ -5,7 +5,7 @@ export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<MainPage/>} >  </Route>
+                <Route  element={<MainPage/>} >  </Route>
             </Routes>
         </BrowserRouter>
     )

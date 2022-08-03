@@ -1,13 +1,14 @@
-import { BoardProps } from "../../../../types/types"
-import { MainContainer } from "./styled"
+import { BoardProps } from "../../../../types/types";
+import { MainContainer } from "./styled";
 
-export const ResultBoard = ({contestResults}:BoardProps) => {
-    console.log(contestResults)
-    
-    return (
-        <MainContainer>
-         <p>some balls</p>
+export const ResultBoard = ({ contestResults }: BoardProps) => {
+  const showResults = () => {
+    const list = contestResults?.map((item: string) => {
+      return <div key={item}>{item}</div>;
+    });
 
-        </MainContainer>
-    )
-}
+    return list?.length ? list : <p>Selecione uma loteria</p>;
+  };
+
+  return <MainContainer>{showResults()}</MainContainer>;
+};

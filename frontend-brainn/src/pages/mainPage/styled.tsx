@@ -4,5 +4,5 @@ export const MainContainer = styled.div`
 display: flex;
 height:100vh;
 width: 100vw;
-justify-content: space-around;
+justify-content: space-between;
 `
