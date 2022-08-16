@@ -1,14 +1,14 @@
-import { StyledTable } from "./styled"
+import { StyledTable, StyledTr, StyledTh  } from "./styled"
 
 export const Table = ({ data }) => {
 
     const tableData = data?.map((item) => {
         return (
-            <tr>
-                <th>{item.firstName}</th>
-                <th>{item.lastName}</th>
-                <th>{item.participation * 100} %</th>
-            </tr>
+            <StyledTr>
+                <StyledTh>{item.firstName}</StyledTh>
+                <StyledTh>{item.lastName}</StyledTh>
+                <StyledTh>{item.participation * 100} %</StyledTh>
+            </StyledTr>
         )
     })
 

@@ -7,7 +7,7 @@ import { Header } from "./components/Header/Header";
 
 function MainPage() {
     const [data, getData] = useRequestData([], "/data")
-
+   
     useEffect(() => {
         getData()
     }, [])
@@ -23,6 +23,7 @@ function MainPage() {
     return (
         <MainContainer>
             <Header/>
+           
             <CenterContainer>
                 <Table data={data} />
                 <Chart
@@ -32,7 +33,6 @@ function MainPage() {
                     height={"400px"}
                 />
             </CenterContainer>
-
         </MainContainer>
     );
 }

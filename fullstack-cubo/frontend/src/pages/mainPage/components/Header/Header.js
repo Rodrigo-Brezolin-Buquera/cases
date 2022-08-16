@@ -1,7 +1,9 @@
 import { Button, Input } from '@chakra-ui/react'
 import { HeaderContainer } from './styled'
 
+
 export const Header = () => {
+   
     return (
         <HeaderContainer>
             <Input variant='filled'  placeholder='First name' />

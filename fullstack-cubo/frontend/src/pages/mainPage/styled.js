@@ -10,5 +10,6 @@ height:100%;
 
 export const CenterContainer = styled.div`
 display: flex;
-padding: 0 5%;
+padding: 5% 5%;
 `
+
