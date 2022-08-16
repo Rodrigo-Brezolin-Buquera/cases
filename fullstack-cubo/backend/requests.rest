@@ -1,0 +1,14 @@
+
+### busca dados
+GET http://localhost:3003/data
+
+### busca dados
+POST  http://localhost:3003/data
+Content-Type: application/json
+
+{
+    "id": -1,
+    "firstName": 0,
+     "lastName": 0,
+    "participation": 0
+}
