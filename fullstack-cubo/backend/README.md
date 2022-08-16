@@ -1,12 +1,12 @@
 
 <h1 align="center">
-     Teste prático da RedFoxTech
+     Teste prático da Cubo
 </h1>
 
 ##  Sobre
-Extração de dados sobre pokemonGo de planilha, inseração em banco de dados SQL e aplicação de multiplas queries.
+Criação de um backend e um front que cria um gráfico com os dados
 
-Link: https://github.com/RedFoxTech/vaga-backend-teste
+Link: https://github.com/cubonetwork/fullstack-challenge
 
 ##  Status do Projeto
-- Concluido
+- Em andamento

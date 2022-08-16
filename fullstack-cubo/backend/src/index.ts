@@ -3,11 +3,12 @@ import express from "express";
 import { Controller } from "./controller/Controller";
 import { Request, Response } from "express";
 import "express-async-errors";
-
+import cors from "cors"
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json())
+app.use(cors())
 
 const controller = new Controller()
 
