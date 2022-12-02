@@ -1,4 +1,4 @@
 <p>cards-list </p>
 <div *ngFor=" let card of cardList ">
-    <p>{{ card.name }}</p>
+    <app-card [card]="card" [baseUrl]="baseImageURL" [backCardImage]="backcardImage" ></app-card>
 </div>

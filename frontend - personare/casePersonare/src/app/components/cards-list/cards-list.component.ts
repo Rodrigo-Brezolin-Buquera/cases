@@ -20,10 +20,9 @@ export class CardsListComponent implements OnInit {
       this.baseImageURL = url[0]
     })
 
-    this.service.getCardBaseURL().subscribe((url)=>{
+    this.service.getBackImage().subscribe((url)=>{
       this.backcardImage = url[0]
     })
-
 
     this.service.getCards().subscribe((list)=>{
       this.cardList = list
