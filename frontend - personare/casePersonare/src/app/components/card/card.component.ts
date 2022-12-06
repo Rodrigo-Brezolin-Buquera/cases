@@ -8,6 +8,10 @@ import { Card } from 'src/app/cards';
 })
 export class CardComponent {
 
+cardStatus = {
+  fliped:false
+}
+
 @Input() card:Card = {
   name: '',
   image: ''
@@ -15,4 +19,8 @@ export class CardComponent {
 
 @Input() baseUrl:string = ""
 @Input() backCardImage:string = ""
+
+flipCard() {
+  this.cardStatus.fliped = !this.cardStatus.fliped
+}
 }
