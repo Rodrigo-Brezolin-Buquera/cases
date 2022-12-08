@@ -15,6 +15,19 @@ export class CardsListComponent implements OnInit {
 
   constructor(private service: CardsService){}
 
+  shuffle(array: Card[]) {
+    let currentIndex = array.length
+    let randomIndex;
+  
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
+
+
   ngOnInit(): void {
     this.service.getCardBaseURL().subscribe((url)=>{
       this.baseImageURL = url[0]
@@ -25,7 +38,7 @@ export class CardsListComponent implements OnInit {
     })
 
     this.service.getCards().subscribe((list)=>{
-      this.cardList = list
+      this.cardList = this.shuffle(list)
     })
   }
 
