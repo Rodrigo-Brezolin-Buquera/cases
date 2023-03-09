@@ -14,7 +14,7 @@ export const getPokemon = async (limit = 10, offset = 0) => {
 
   for (let item of data.results) {
     const pokemon = await getPokemonDetail(item.name)
-    result = [...result, pokemon]
+    result = [...result, toModelPokemon(pokemon)]
 
   }
   return result
@@ -23,4 +23,13 @@ export const getPokemon = async (limit = 10, offset = 0) => {
 export const getPokemonDetail = async (name) => {
   const res = await api.get(`${name}`)
   return res.data
+}
+
+export const toModelPokemon = (pokemon) => {
+  return {
+    id: pokemon.id,
+    name: pokemon.name,
+    types: pokemon.types,
+    image: pokemon.sprites.other["official-artwork"].front_default
+  }
 }

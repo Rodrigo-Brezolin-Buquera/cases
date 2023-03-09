@@ -12,10 +12,10 @@ export default function MainPage() {
 
 
   useEffect(() => {
-    dispatch(getList())
     dispatch(getDetails("pikachu"))
   }, [])
 
+  console.log(pokemon)
   const addPokedex = (pokemon) => {
     dispatch(addToPokedex(pokemon))
   }

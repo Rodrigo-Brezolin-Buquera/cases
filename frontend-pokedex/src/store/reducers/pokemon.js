@@ -15,7 +15,7 @@ const pokemonSlice = createSlice({
       .addCase(getList.pending, (state, { payload }) => "carregando")
       .addCase(getList.rejected, (state, { payload }) => "falha ao carregar")
       .addCase(addToPokedex.fulfilled, (state, { payload }) => {
-        const index = state.findIndex(item => item === payload);
+        const index = state.findIndex(item => item === payload);  // ver direito isso
         state.splice(index, 1)
       })
       .addCase(removeFromPokedex.fulfilled, (state, { payload }) => {
@@ -24,6 +24,7 @@ const pokemonSlice = createSlice({
     
   },
 });
+
 
 
 export default pokemonSlice.reducer;
