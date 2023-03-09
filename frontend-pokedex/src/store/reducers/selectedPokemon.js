@@ -1,9 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { getPokemonDetail } from "@/pages/api";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const getDetails = createAsyncThunk("get/details", async (name) => getPokemonDetail(name));
+
 
 const selectedPokemonSlice = createSlice({
     name: "selectedPokemon",
     initialState: {},
-    reducers: {}
+    extraReducers: (builder) => {
+        builder
+          .addCase(getDetails.fulfilled, (state, { payload }) => payload)
+          .addCase(getDetails.pending, (state, { payload }) => "carregando")
+          .addCase(getDetails.rejected, (state, { payload }) => "falha ao carregar")
+         
+    
+    }
 })
 
 export default selectedPokemonSlice.reducer

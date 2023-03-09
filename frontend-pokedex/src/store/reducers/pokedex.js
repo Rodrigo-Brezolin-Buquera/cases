@@ -1,9 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { addToPokedex } from "./pokemon";
+
+
+
+export const removeFromPokedex = createAsyncThunk("remove/pokedex", (pokemon) => pokemon);
 
 const pokedexSlice = createSlice({
     name: "pokedex",
     initialState: [],
-    reducers: {}
+    extraReducers: (builder) => {
+        builder
+        .addCase(addToPokedex.fulfilled, (state, { payload }) => {
+            state.push(payload)
+        })
+        .addCase(removeFromPokedex.fulfilled, (state, { payload }) => {
+            const index = state.findIndex(item => item === payload); // mudar para id depois
+            state.splice(index, 1)
+        })
+    }
 })
+
+export const { addToPokedexSuccess } = pokedexSlice.actions;
 
 export default pokedexSlice.reducer
