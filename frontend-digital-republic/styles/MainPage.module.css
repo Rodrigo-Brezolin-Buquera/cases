@@ -1,0 +1,71 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: min-content;
+    padding: 0.5em 0.5em;
+    margin-top: 0.5em;
+    gap: 0.2em;
+    border-radius: 20px;
+    box-shadow: 3px 2px 1px lightgray;
+    background-color:  lightblue;
+  }
+
+.flex-line {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:0.3em;  
+  }
+
+.main-photo {
+  object-fit: contain;
+  width: 700px;
+  margin: 3em 2em;
+  box-shadow: 3px 2px 1px lightblue;
+}
+
+.logo {
+  object-fit: contain;
+  width: 70px;
+}
+
+.quantity-input {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.flex-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flex-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 3em;
+  gap: 0.5em;
+}
+
+.border-card {
+  background-color: lightblue;
+  border-radius: 25px;
+  width:auto; 
+  padding: 1em 2em 2em;
+  box-shadow: 3px 2px 1px lightgray;
+}
+
+.center-text {
+  text-align: center;
+  font-weight: normal;
+}
+
+.error-mensage {
+  color: red;
+  font-size: 0.8em;
+}

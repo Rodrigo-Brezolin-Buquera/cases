@@ -1,0 +1,11 @@
+<div class="card-margin">
+    
+    <div  *ngIf="cardStatus.fliped else backCard"   (click)="flipCard()">
+        <img src="{{ baseUrl+card.image }}" alt="Imagem carta {{ card.name }}" />  
+        <p class="d-flex justify-content-center">{{ card.name }}</p>
+    </div>
+   
+</div>
+<ng-template #backCard>
+    <img src="{{ backCardImage }}" alt="Carta virada para baixo" (click)="flipCard()" />
+</ng-template>
