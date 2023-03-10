@@ -14,7 +14,7 @@ const pokedexSlice = createSlice({
             state.push(payload)
         })
         .addCase(removeFromPokedex.fulfilled, (state, { payload }) => {
-            const index = state.findIndex(item => item === payload); // mudar para id depois
+            const index = state.findIndex(item => item.id === payload.id); // mudar para id depois
             state.splice(index, 1)
         })
     }

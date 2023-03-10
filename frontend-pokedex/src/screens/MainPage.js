@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react'
-import { addToPokedex, getList } from '@/store/reducers/pokemon';
+import { addToPokedex } from '@/store/reducers/pokemon';
 import { getDetails } from '@/store/reducers/selectedPokemon';
 import { removeFromPokedex } from '@/store/reducers/pokedex';
 
@@ -15,10 +15,7 @@ export default function MainPage() {
     dispatch(getDetails("pikachu"))
   }, [])
 
-  console.log(pokemon)
-  console.log(selectedPokemon)
-
-  const addPokedex = (pokemon) => {
+   const addPokedex = (pokemon) => {
     dispatch(addToPokedex(pokemon))
   }
 
@@ -33,11 +30,11 @@ export default function MainPage() {
       <div>
         <p> lista pokemon</p>
 
-        {pokemon === "carregando" ? <p>loading</p> : pokemon.map(i => <p key={i.name} onClick={() => addPokedex(i.name)}>{i.name}</p>)}
+        {pokemon === "carregando" ? <p>loading</p> : pokemon.map(i => <p key={i.id} onClick={() => addPokedex(i)}>{i.name}</p>)}
       </div>
       <div>
         <p> lista pokedex</p>
-        {pokedex?.length && pokedex.map(i => <p key={i} onClick={() => removePokedex(i)}>{i}</p>)}
+        {pokedex?.length && pokedex.map(i => <p key={i.id} onClick={() => removePokedex(i)}>{i.name}</p>)}
 
       </div>
       <div>
