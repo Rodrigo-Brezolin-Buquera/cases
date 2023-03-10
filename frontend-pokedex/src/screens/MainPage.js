@@ -16,6 +16,8 @@ export default function MainPage() {
   }, [])
 
   console.log(pokemon)
+  console.log(selectedPokemon)
+
   const addPokedex = (pokemon) => {
     dispatch(addToPokedex(pokemon))
   }
