@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react'
-import { Header } from '@/components/Header';
+import { Header } from '@/components/header/Header';
 import { removeFromPokedex } from '@/store/reducers/pokedex';
 
 export default function Pokedex() {

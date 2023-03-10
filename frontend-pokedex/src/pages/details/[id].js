@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/header/Header";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react'
 import { getDetails } from '@/store/reducers/selectedPokemon';
