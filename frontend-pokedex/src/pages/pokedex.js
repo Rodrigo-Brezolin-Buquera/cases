@@ -1,28 +1,29 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Header } from '@/components/header/Header';
 import { removeFromPokedex } from '@/store/reducers/pokedex';
+import PokemonCard from '@/components/pokemonCard/PokemonCard';
 
 export default function Pokedex() {
   const dispatch = useDispatch();
   const pokedex = useSelector((state) => state.pokedex)
 
-  useEffect(() => {
-  }, [])
-
-  const removePokedex = (pokemon) => {
+  
+  const removePokedex = useCallback((pokemon) => {
     dispatch(removeFromPokedex(pokemon))
-  }
+  }, [dispatch])
 
 
+  console.log(pokedex)
   return (
     <div>
       <Header />
-      <div>
-        <p> lista pokedex</p>
-        {pokedex?.length && pokedex.map(i => <p key={i.id} onClick={() => removePokedex(i)}>{i.name}</p>)}
+       <h2> lista pokedex</h2>
+      <main>
+       
+        {pokedex?.length && pokedex.map(i => <PokemonCard key={i.id} pokemon={i} handler={removePokedex} />) }
 
-      </div>
+      </main>
     </div>
   )
 

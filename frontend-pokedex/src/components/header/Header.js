@@ -22,7 +22,7 @@ export const Header = ({ deleteFromPokedex }) => {
                 }
             </div>
 
-            <Image src={"/images/Logo.svg"} width="163" height="60" ></Image>
+            <Image src={"/images/Logo.svg"} width="163" height="60" alt={"logo pokemon"} ></Image>
 
             <div className={styles['button-div']} >
 

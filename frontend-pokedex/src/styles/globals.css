@@ -27,3 +27,11 @@ h2 {
   margin: 1em;
   letter-spacing: 0.05em;
 }
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+}
