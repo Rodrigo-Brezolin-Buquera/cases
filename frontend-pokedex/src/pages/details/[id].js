@@ -3,11 +3,10 @@ import { Header } from "@/components/header/Header";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react'
 import { getDetails } from '@/store/reducers/selectedPokemon';
-import { removeFromPokedex } from '@/store/reducers/pokedex';
+import DetailsCard from "@/components/detailsCard/DetailsCard";
 
 
-
-export default function Pokedex() {
+export default function Details() {
   const dispatch = useDispatch();
   const selectedPokemon = useSelector((state) => state.selectedPokemon)
   const router = useRouter()
@@ -17,22 +16,14 @@ export default function Pokedex() {
      id && dispatch(getDetails(id))
   }, [id])
 
-  const addPokedex = (pokemon) => {
-    dispatch(addToPokedex(pokemon))
-  }
-
-  const removePokedex = (pokemon) => {
-    dispatch(removeFromPokedex(pokemon))
-  }
-
   return (
-    <div>
+    <>
       <Header />
-      <div>
-        <p> detalhes</p>
-        <p>{selectedPokemon?.name}</p>
-      </div>
-    </div>
+        <h2> Detalhes</h2>
+      <main>
+         { selectedPokemon ===  "carregando" ?  <p>carregando</p> : <DetailsCard pokemon={selectedPokemon}/> }
+      </main>
+    </>
   )
 
 }

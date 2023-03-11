@@ -40,6 +40,8 @@ export const toModelPokemonDetails = (pokemon) => {
     name: pokemon.name,
     types: pokemon.types.map(i=>i.type.name),
     image: pokemon.sprites.other["official-artwork"].front_default,
+    frontImage: pokemon.sprites.front_default,
+    backImage: pokemon.sprites.back_default,
     moves: pokemon.moves.slice(0, 10).map(i=>i.move.name),
     stats: pokemon.stats.map(i=> {return { base_stat: i.base_stat, name: i.stat.name }} )
   }
