@@ -8,7 +8,7 @@ export default api;
 
 
 
-export const getPokemon = async (limit = 10, offset = 0) => {
+export const getPokemon = async (limit = 20, offset = 0) => {
   let result = []
   const { data } = await api.get(`?limit=${limit}&offset=${offset}`) // mudar aqui para paginação
 
