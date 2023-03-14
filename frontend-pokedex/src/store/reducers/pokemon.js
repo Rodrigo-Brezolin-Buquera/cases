@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { removeFromPokedex } from "./pokedex";
 
 
-export const getList = createAsyncThunk("get/list", async () => getPokemon());
+export const getList = createAsyncThunk("get/list", async (limit, offset) => getPokemon(limit, offset));
 export const addToPokedex = createAsyncThunk("add/pokedex", (pokemon) => pokemon);
 
 const pokemonSlice = createSlice({

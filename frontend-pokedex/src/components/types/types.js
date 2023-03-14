@@ -44,9 +44,9 @@ export const typesStyles = {
         image: "/images/dragon.png",
         background:"#004170"
     }, 
-    eletric: {
+    electric: {
         color: "#F4D23B",
-        image: "/images/eletric.png",
+        image: "/images/electric.png",
         background:"#ff9a52"
     },
     fairy: {
@@ -62,7 +62,7 @@ export const typesStyles = {
     ghost: {
         color: "#5269AC",
         image: "/images/ghost.png",
-        background:""
+        background:"#5380AC"
     },
     ground: {
         color: "#938172",

@@ -13,7 +13,7 @@ const PokemonCard = ({ pokemon, handler }) => {
     return (
         <div
             className={styles['flex-card']}
-            style={{ backgroundColor: typesStyles[pokemon.types[0]].background }}
+            style={{ backgroundColor: typesStyles[pokemon.types[0]]?.background }}
         >
             <PokemonData pokemon={pokemon}/>
           

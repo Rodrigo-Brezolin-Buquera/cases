@@ -3,6 +3,7 @@ import React from 'react'
 import { PokemonData } from '../pokemonData/PokemonData'
 import { typesStyles } from '../types/types'
 import styles from "./detailsCard.module.scss"
+import Image from 'next/image'
 
 const DetailsCard = ({ pokemon }) => {
 
@@ -15,8 +16,8 @@ const DetailsCard = ({ pokemon }) => {
             return "#FF7B2D"
         }
     }
-
     return (
+
         <>
             {pokemon.types &&
                 <div

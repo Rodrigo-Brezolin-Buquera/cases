@@ -8,16 +8,15 @@ export default api;
 
 
 
-export const getPokemon = async (limit = 20, offset = 0) => {
+export const getPokemon = async (query = `?limit=25&offset=0`) => {
   let result = []
-  const { data } = await api.get(`?limit=${limit}&offset=${offset}`) // mudar aqui para paginação
-
+  const { data } = await api.get(query) 
   for (let item of data.results) {
     const pokemon = await getPokemonDetail(item.name)
     result = [...result, toModelPokemon(pokemon)]
 
   }
-  return result
+  return {result, next: data.next, previous: data.previous}
 };
 
 export const getPokemonDetail = async (name) => {
