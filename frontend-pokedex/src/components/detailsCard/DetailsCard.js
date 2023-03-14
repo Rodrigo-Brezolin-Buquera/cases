@@ -38,7 +38,7 @@ const DetailsCard = ({ pokemon }) => {
                         <h4> Stats</h4>
                         {
                             pokemon?.stats && pokemon.stats.map(i => {
-                                return <div className={styles["card-flex"]}>
+                                return <div key={i.id} className={styles["card-flex"]}>
                                     {i.name}
                                     <div style={
                                         {
@@ -65,7 +65,7 @@ const DetailsCard = ({ pokemon }) => {
                         >
                             <h4>Moves:</h4>
                             {
-                                pokemon?.moves && pokemon.moves.map(i => <div className={styles["move-card"]}> {i.replace("-", " ")}</div>)
+                                pokemon?.moves && pokemon.moves.map(i => <div  key={i.id} className={styles["move-card"]}> {i.replace("-", " ")}</div>)
                             }
                         </div>
                     </div>

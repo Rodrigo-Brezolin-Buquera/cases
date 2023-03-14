@@ -21,9 +21,8 @@ export default function HomePage() {
 
   return (
     <>
-
       <Header />
-      <h2  > Todos Pokémons</h2>
+      <h2> Todos Pokémons</h2>
       <div className={styles["button-cont"]}>
         {pokemon.previous && <button onClick={()=> changeOffset(pokemon.previous)}> Anterior </button>}
         {pokemon.next && <button onClick={()=> changeOffset(pokemon.next)}> Próximos </button>}

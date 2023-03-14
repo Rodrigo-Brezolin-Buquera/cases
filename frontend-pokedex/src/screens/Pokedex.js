@@ -4,7 +4,7 @@ import { Header } from '@/components/header/Header';
 import { removeFromPokedex } from '@/store/reducers/pokedex';
 import PokemonCard from '@/components/pokemonCard/PokemonCard';
 
-export default function PokedexPage() {
+export default function PokedexPage({pokedex}) {
   const dispatch = useDispatch();
   const pokedex = useSelector((state) => state.pokedex)
 
