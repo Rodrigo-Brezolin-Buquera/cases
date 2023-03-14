@@ -9,8 +9,8 @@ export const PokemonData = ({ pokemon }) => {
 
     const TypeCard = ({ type }) => {
         return (
-            <div className={styles["type-card"]} style={{ backgroundColor: typesStyles[type].color }} >
-                <Image src={typesStyles[type].image} alt={type + "logo"} width={17} height={17} />
+            <div className={styles["type-card"]} style={{ backgroundColor: typesStyles[type]?.color }} >
+                <Image src={typesStyles[type]?.image} alt={type + "logo"} width={17} height={17} />
                 <p  > {type}</p>
             </div>
         )

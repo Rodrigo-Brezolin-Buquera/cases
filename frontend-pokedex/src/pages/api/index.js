@@ -29,7 +29,7 @@ export const toModelPokemon = (pokemon) => {
   return {
     id: pokemon.id,
     name: pokemon.name,
-    types: pokemon.types.map(i=>i.type.name),
+    types: pokemon.types.map(i => i.type.name),
     image: pokemon.sprites.other["official-artwork"].front_default
   }
 }
@@ -38,11 +38,21 @@ export const toModelPokemonDetails = (pokemon) => {
   return {
     id: pokemon.id,
     name: pokemon.name,
-    types: pokemon.types.map(i=>i.type.name),
+    types: pokemon.types.map(i => i.type.name),
     image: pokemon.sprites.other["official-artwork"].front_default,
     frontImage: pokemon.sprites.front_default,
     backImage: pokemon.sprites.back_default,
-    moves: pokemon.moves.slice(0, 10).map(i=>i.move.name),
-    stats: pokemon.stats.map(i=> {return { base_stat: i.base_stat, name: i.stat.name }} )
+    moves: pokemon.moves.slice(0, 9).map(i => i.move.name),
+    stats: pokemon.stats.map(i => { return { base_stat: i.base_stat, name: stats[i.stat.name] } })
   }
+}
+
+const stats = {
+  hp: "hp",
+  attack: "atk",
+  defense: "def",
+  "special-attack": "sp atk",
+  "special-defense": "sp def",
+  speed: "speed",
+
 }

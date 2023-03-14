@@ -4,7 +4,7 @@ import styles from "./header.module.scss"
 import Image from "next/image"
 import classNames from "classnames"
 
-export const Header = ({ deleteFromPokedex }) => {
+export const Header = () => {
     const router = useRouter()
 
 
@@ -33,14 +33,11 @@ export const Header = ({ deleteFromPokedex }) => {
                                 className={
                                     classNames(
                                         styles['header-button'],
-                                        router.pathname === "/" ? styles['blue-button'] : styles['red-button']
+                                        styles['blue-button'] 
                                     )
-                                } >
-                                {router.pathname === "/" ?
+                                } >             
                                     <p>pokedex</p>
-                                    :
-                                    <p onClick={deleteFromPokedex} >Excluir da pokedex</p>
-                                }
+                                   
                             </button>
                         </PokedexLink>
                     )
