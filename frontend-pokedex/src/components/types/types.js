@@ -1,3 +1,6 @@
+
+
+
 export const typesStyles = {
     poison: {
         color: "#AD61AE",
