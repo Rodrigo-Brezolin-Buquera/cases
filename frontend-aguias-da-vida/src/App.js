@@ -1,14 +1,17 @@
 
+import { ChakraProvider } from "@chakra-ui/react"
+import Header from "./header"
+
 
 function App() {
   return (
-    <div >
-      <p>Carrossel</p>
-      <p>Serviços</p>
+    <ChakraProvider>
+      <Header/>
+        <p>Serviços</p>
       <p>Avaliações</p>
-
-    </div>
-  );
+    </ChakraProvider>
+  )
 }
+
 
 export default App;
