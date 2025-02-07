@@ -16,6 +16,7 @@ const Header = () => {
         backgroundColor={["none", "white", "white"]}
         color={"black"}
         as="b"
+        fontSize="18px"
       >
         <Box
           fontSize="14px"
@@ -46,26 +47,7 @@ const Header = () => {
           Ajuda
         </Text>
       </Box>
-      <ImageCarousel />
-
-      <Text
-        position="absolute"
-        top="50%"
-        left="50%"
-        transform="translate(-50%, -50%)"
-        fontSize="32px"
-        fontWeight="bold"
-        textAlign="center"
-        color="white"
-        backgroundColor="rgba(0, 0, 0, 0.4)"
-        px="10px"
-        py="5px"
-        borderRadius="16px"
-        zIndex="10"
-      >
-        As Melhores Clínicas de Recuperação Álcoolismo | Dependência Quimica |
-        Transtornos Psiquiatricos
-      </Text>
+      <ImageCarousel />   
     </Box>
   );
 };
