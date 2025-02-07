@@ -2,6 +2,7 @@
 import { ChakraProvider } from "@chakra-ui/react"
 import Header from "./header"
 import Information from "./Information";
+import Rating from "./rating";
 
 
 function App() {
@@ -9,28 +10,8 @@ function App() {
     <ChakraProvider>
       <Header/>
       <Information/>
-      <p>Avaliações</p>
       <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-
+      <Rating/>
     </ChakraProvider>
   )
 }
