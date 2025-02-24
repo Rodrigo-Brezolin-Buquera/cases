@@ -29,11 +29,19 @@ const passTroughtTable = {
   };
   
   export const applyPassTroughRule = (icmsInterestadual, icmsInterno) => {
-    const key = `${Number(icmsInterestadual.toFixed(2))}-${Number(icmsInterno.toFixed(2))}`;
+    const icmsInterestadualNumber = Number(icmsInterestadual);
+    const icmsInternoNumber = Number(icmsInterno);
   
+   
+    if (isNaN(icmsInterestadualNumber) || isNaN(icmsInternoNumber)) {
+      throw new Error("ICMS Interestadual e ICMS Interno devem ser números válidos.");
+    }
+  
+    const key = `${icmsInternoNumber.toFixed(2)}-${icmsInterestadualNumber.toFixed(2)}`;
+
     if (passTroughtTable.hasOwnProperty(key)) {
       return passTroughtTable[key];
     } else {
-      throw new Error("Combinação de ICMS Interestadual e ICMS Interno não encontrada na tabela.");
+      throw new Error("Entre com valores de 4, 7 ou 12");
     }
   }
