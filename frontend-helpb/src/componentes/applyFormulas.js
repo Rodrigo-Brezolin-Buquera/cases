@@ -14,40 +14,27 @@ export const applyFormulas = (prod) => {
         beneficioFiscal
       } = prod;
 
-      const precoFinalAjustado = calculateAdjustedFinalPrice(precoFinal18, icmsPercentual)
+      finalProd.precoFinalAjustado = calculateAdjustedFinalPrice(precoFinal18, icmsPercentual)
 
-      const repassePercentual = applyPassTroughRule(icmsPercentual, icmsCompraPercentual)
+      finalProd.repassePercentual = applyPassTroughRule(icmsPercentual, icmsCompraPercentual)
 
-      const precoComRepasse = calculateFinalPriceWithPassThrough(precoFinal18, repassePercentual)
+      finalProd.precoComRepasse = calculateFinalPriceWithPassThrough(precoFinal18, finalProd.repassePercentual)
 
-      const custoFinal = calculateFinalCost(precoComRepasse, descontoPercentual)
+      finalProd.custoFinal = calculateFinalCost(finalProd.precoComRepasse, descontoPercentual)
 
-      const custoLiquido = calculateLiquidCost(custoFinal,icmsCompraPercentual)
+      finalProd.custoLiquido = calculateLiquidCost(finalProd.custoFinal,icmsCompraPercentual)
 
-      const preco = calculatePrice(precoFinalAjustado, desconto )
+      finalProd.preco = calculatePrice(finalProd.precoFinalAjustado, desconto )
 
-      const rb = calculateRB(preco, quantidadePF)
+      finalProd.rb = calculateRB(finalProd.preco, quantidadePF)
 
-      const cmv = calculateCMV(custoLiquido, quantidadePF)
+      finalProd.cmv  = calculateCMV(finalProd.custoLiquido, quantidadePF)
 
-      const rl = calculateRL(rb,impostos)
+      finalProd.rl = calculateRL(finalProd.rb,impostos)
 
-      const lb = calculateLB(rl,beneficioFiscal,cmv)
+      finalProd.lb = calculateLB(finalProd.rl,beneficioFiscal,finalProd.cmv)
 
-      const margemBrutaPercentual = calculateMB(lb,rb)
-
-
-      finalProd.precoFinalAjustado = precoFinalAjustado;
-      finalProd.repassePercentual = repassePercentual;
-      finalProd.precoComRepasse = precoComRepasse;
-      finalProd.custoFinal = custoFinal;
-      finalProd.custoLiquido = custoLiquido;
-      finalProd.preco = preco;
-      finalProd.rb = rb;
-      finalProd.rl = rl;
-      finalProd.margemBrutaPercentual = margemBrutaPercentual;
-      finalProd.lb = lb;
-      finalProd.cmv = cmv;
+      finalProd.margemBrutaPercentual = calculateMB(finalProd.lb,finalProd.rb)
 
      return finalProd 
 }
