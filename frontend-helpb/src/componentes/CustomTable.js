@@ -37,7 +37,7 @@ const columns = [
   {
     id: "descontoPercentual",
     label: "Desconto %",
-    minWidth: 80,
+    minWidth: 100,
     editable: true,
   },
   { id: "custoFinal", label: "Custo Final", minWidth: 100, editable: false },
@@ -53,8 +53,8 @@ const columns = [
     minWidth: 100,
     editable: false,
   },
-  { id: "tributacao", label: "Tributação", minWidth: 50, editable: false },
-  { id: "quantidadePF", label: "Quantidade PF", minWidth: 100, editable: true },
+  { id: "tributacao", label: "Tributação", minWidth: 100, editable: false },
+  { id: "quantidadePF", label: "Quantidade PF", minWidth: 120, editable: true },
   { id: "preco", label: "Preço", minWidth: 50, editable: false },
   { id: "desconto", label: "Desconto", minWidth: 50, editable: true },
   { id: "rb", label: "RB", minWidth: 50, editable: false },
@@ -69,7 +69,7 @@ const columns = [
 export default function CustomTable() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [products, setProducts] = useState([product]);
+  const [products, setProducts] = useState(product);
   const [editing, setEditing] = useState({ rowIndex: null, columnId: null });
   const [editValue, setEditValue] = useState("");
 
@@ -109,7 +109,7 @@ export default function CustomTable() {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{ minWidth: column.minWidth, fontWeight: "bold" }}
                 >
                   {column.label}
                 </TableCell>
