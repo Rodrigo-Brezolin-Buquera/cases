@@ -10,35 +10,38 @@ import TableRow from '@mui/material/TableRow';
 import product from './product';
 
 const columns = [
-  { id: 'empresa', label: 'Empresa', minWidth: 50 },
-  { id: 'grupoMarca', label: 'Grupo Marca', minWidth:100 },
-  { id: 'item', label: 'Descrição', minWidth: 50},
-  { id: 'precoFinal18', label: 'PF18%', minWidth: 50},
-  { id: 'icmsPercentual', label: 'ICMS %', minWidth: 70 },
-  { id: 'precoFinalAjustado', label: 'Preço Final Ajustado', minWidth: 150 },
-  { id: 'repassePercentual', label: 'Repasse %', minWidth: 80 },
-  { id: 'precoComRepasse', label: 'Preço com Repasse', minWidth: 150 },
-  { id: 'descontoPercentual', label: 'Desconto %', minWidth: 80 },
-  { id: 'custoFinal', label: 'Custo Final', minWidth: 100 },
-  { id: 'icmsCompraPercentual', label: 'ICMS Compra %', minWidth: 120 },
-  { id: 'custoLiquido', label: 'Custo Líquido', minWidth: 100 },
-  { id: 'tributacao', label: 'Tributação', minWidth: 50 },
-  { id: 'quantidadePF', label: 'Quantidade PF', minWidth: 100 },
-  { id: 'preco', label: 'Preço', minWidth: 50 },
-  { id: 'desconto', label: 'Desconto', minWidth: 50 },
-  { id: 'rb', label: 'RB', minWidth: 50 },
-  { id: 'impostos', label: 'Impostos', minWidth: 50 },
-  { id: 'rl', label: 'RL', minWidth: 50 },
-  { id: 'margemBrutaPercentual', label: 'Margem Bruta %', minWidth: 120 },
-  { id: 'lucroBruto', label: 'Lucro Bruto', minWidth: 100 },
-  { id: 'beneficioFiscal', label: 'Benefício Fiscal', minWidth: 110 },
-  { id: 'cmv', label: 'CMV', minWidth: 50, align: 'right' }
+  { id: 'empresa', label: 'Empresa', minWidth: 50, editable: true },
+  { id: 'grupoMarca', label: 'Grupo Marca', minWidth:100, editable: false },
+  { id: 'item', label: 'Descrição', minWidth: 50, editable: false},
+  { id: 'precoFinal18', label: 'PF18%', minWidth: 50, editable: false},
+  { id: 'icmsPercentual', label: 'ICMS %', minWidth: 70, editable: false },
+  { id: 'precoFinalAjustado', label: 'Preço Final Ajustado', minWidth: 150, editable: false },
+  { id: 'repassePercentual', label: 'Repasse %', minWidth: 80, editable: false },
+  { id: 'precoComRepasse', label: 'PF - Repasse', minWidth: 100, editable: false },
+  { id: 'descontoPercentual', label: 'Desconto %', minWidth: 80, editable: true },
+  { id: 'custoFinal', label: 'Custo Final', minWidth: 100, editable: false },
+  { id: 'icmsCompraPercentual', label: 'ICMS Compra %', minWidth: 120, editable: true },
+  { id: 'custoLiquido', label: 'Custo Líquido', minWidth: 100, editable: false },
+  { id: 'tributacao', label: 'Tributação', minWidth: 50, editable: false },
+  { id: 'quantidadePF', label: 'Quantidade PF', minWidth: 100, editable: true },
+  { id: 'preco', label: 'Preço', minWidth: 50, editable: false },
+  { id: 'desconto', label: 'Desconto', minWidth: 50, editable: true },
+  { id: 'rb', label: 'RB', minWidth: 50, editable: false },
+  { id: 'impostos', label: 'Impostos', minWidth: 50, editable: false },
+  { id: 'rl', label: 'RL', minWidth: 50, editable: false },
+  { id: 'margemBrutaPercentual', label: 'MB %', minWidth: 50, editable: false },
+  { id: 'lucroBruto', label: 'LB', minWidth: 50, editable: false },
+  { id: 'beneficioFiscal', label: 'BF', minWidth: 50, editable: true },
+  { id: 'cmv', label: 'CMV', minWidth: 50, align: 'right', editable: false }
 ];
 
 export default function CustomTable() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [products, setProducts] = useState(product)
+  const [products, setProducts] = useState([product])
+  const [editing, setEditing] = useState({ rowIndex: null, columnId: null });
+  const [editValue, setEditValue] = useState('');
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -47,6 +50,18 @@ export default function CustomTable() {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+
+  const handleEdit = (rowIndex, columnId, value) => {
+    setEditing({ rowIndex, columnId });
+    setEditValue(value); 
+  };
+
+  const handleSave = (rowIndex, columnId) => {
+    const updatedProducts = [...products];
+    updatedProducts[rowIndex] = { ...updatedProducts[rowIndex], [columnId]: editValue };
+    setProducts(updatedProducts);
+    setEditing({ rowIndex: null, columnId: null });
   };
 
   return (
@@ -67,18 +82,34 @@ export default function CustomTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {[products]
+            {products
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, rowIndex) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={rowIndex}>
                     {columns.map((column) => {
                       const value = row[column.id];
+                      const isEditing = editing.rowIndex === rowIndex && editing.columnId === column.id;
+
                       return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          onClick={() => column.editable && handleEdit(rowIndex, column.id)}
+                        >
+                          {isEditing ? (
+                            <input
+                              type="text"
+                              value={editValue}
+                              onChange={(e) => setEditValue(e.target.value)} 
+                              onBlur={() => handleSave(rowIndex, column.id)} 
+                              autoFocus
+                            />
+                          ) : (
+                            column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value
+                          )}
                         </TableCell>
                       );
                     })}
