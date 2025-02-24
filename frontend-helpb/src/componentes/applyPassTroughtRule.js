@@ -29,7 +29,7 @@ const passTroughtTable = {
   };
   
   export const applyPassTroughRule = (icmsInterestadual, icmsInterno) => {
-    const key = `${icmsInterestadual.toFixed(2)}-${icmsInterno.toFixed(2)}`;
+    const key = `${Number(icmsInterestadual.toFixed(2))}-${Number(icmsInterno.toFixed(2))}`;
   
     if (passTroughtTable.hasOwnProperty(key)) {
       return passTroughtTable[key];

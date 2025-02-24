@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import product from './product';
+import { applyFormulas } from './applyFormulas';
 
 const columns = [
   { id: 'empresa', label: 'Empresa', minWidth: 50, editable: true },
